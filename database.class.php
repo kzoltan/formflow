@@ -14,7 +14,12 @@ class Database {
     private $error;
     
     //variable to hold the statement
-    private $statement;
+    //private $statement;
+	
+	private $fields;
+	private $table;
+	private $conditions;
+	
     
     //Construct
     public function __construct() {
@@ -115,7 +120,25 @@ class Database {
     public function debugDumpParams(){
         return $this->statement->debugDumpParams();
     }
+	
+	public db_select($tablename)
+	{
+		$this->table = $tablename;
+	//logic of the function
+		return $this;
+	}
+	
+	public fields($fieldnames)
+	{
+		$this->fields = $fieldnames;
+		return $this;
+	
+	}
     
+	private conditions()
+	{
+		print 'test';
+	}
 }
 
 ?>

@@ -12,10 +12,13 @@ include 'database.class.php';
 //instantiate new database
 $database = new Database();
 
+$database->$fields = 'hello';
+print $database->$fields;
+
 //objects
 $database->__construct();
 
-$query = $database->query();
+$query = $database->db_select('tablename')->fields('field names')->conditions('conditions')->execute();
 echo "<pre>";
 print $query;
 echo "</pre>";
