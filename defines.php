@@ -1,8 +1,5 @@
 <?php 
 
-/* DOING GIT ON WINDOWS USING THERE APP IS EVEN WORST */
-
-
 // Database access data
 define('__DB_USER', 'root');
 define('__DB_PASS', '123456');
