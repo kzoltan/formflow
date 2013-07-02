@@ -27,8 +27,7 @@ function createInput($type, $name, $value = '', $label = '', $id = null, $pre = 
 }
 
 function get_fields() {
-
-	$fields[] = array('type'=>'text', 'name'=>'username', 'value'=>@$_POST['username'], 'label'=>'Username:', 'required' => TRUE, 'validate' => usernameExist($post['username']));
+        $fields[] = array('type'=>'text', 'name'=>'username', 'value'=>@$_POST['username'], 'label'=>'Username:', 'required' => TRUE, 'validate' => usernameExist($post['username']));
 	$fields[] = array('type'=>'text', 'name'=>'firstname', 'value'=>@$_POST['firstname'], 'label'=>'First Name:', 'required' => TRUE);
 	$fields[] = array('type'=>'text', 'name'=>'email', 'value'=>@$_POST['email'], 'label'=>'Email:', 'required' => TRUE, 'validate' => validemail($post['email']));
 	$fields[] = array('type'=>'password', 'name'=>'password', 'value'=>'', 'label'=>'Password:', 'required' => TRUE);
@@ -36,7 +35,7 @@ function get_fields() {
 	$fields[] = array('type'=>'textarea', 'name'=>'description', 'value'=>@$_POST['description'], 'label'=>'Description:', 'required' => FALSE);
 	$fields[] = array('type'=>'submit', 'name'=>'save', 'value'=>'Save', 'label'=>'');
         $fields[] = array('type'=>'hidden', 'name'=>'isPost', 'value'=>'true', 'label'=>'');
-	
+        
 	return $fields;
 }
 
@@ -55,6 +54,7 @@ function get_form($fields) {
 	);
         return $form;
         */
+        
 	$outHTML = '<form action="" method="POST">'.implode('', $inputs).'</form>';
 	return $outHTML;
 }
@@ -79,11 +79,24 @@ function validate_form($post) {
 	if(empty($post['gender'])) {
 		return 'Please select your gender';
 	}
+        /*
 	if(empty($post['description'])) {
 		return 'Please insert your description';
 	}
-        
+        */
 	return true;
+}
+
+function submit_form($_POST) {
+    $save = saveFieldsInDB($_POST);
+	if($save === TRUE) {
+            print "User saved.";
+            unset($_POST);
+            do_mysqli_close();
+	}
+	else{
+            print "Fill all required fields!";
+	}
 }
 
 function saveFieldsInDB($post) {
@@ -100,7 +113,7 @@ function saveFieldsInDB($post) {
 		'.$post['gender'].', "'.db_escape_string($post['description']).'", "'.md5($post['password']).'", "'.$time.'", "'.$date.'")';
 		
 	if(db_query($query)) {
-		return true;
+            return true;
 	}
 	return false;
 }
