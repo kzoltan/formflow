@@ -1,18 +1,11 @@
 <?php 
 
-include 'helpers.php';
-
-//do_mysqli_connect();
-do_mysqli_connect() or die ('I can not to connect to MySQL!');
-
 function createInput($type, $name, $value = '', $label = '', $id = null, $pre = null, $post = null, $required = '', $validate = '') {
-
-	global $gender;
+    global $gender;
+    $idStr = $id?'id="'.$id.'"':'';
+    $out = '<label>'.$label.'</label>';
 	
-	$idStr = $id?'id="'.$id.'"':'';
-	$out = '<label>'.$label.'</label>';
-	
-	switch($type) {
+    switch($type) {
 		case 'radio':
 			$vals = explode(',', $value);
 			foreach($vals as $val) {
@@ -28,12 +21,10 @@ function createInput($type, $name, $value = '', $label = '', $id = null, $pre = 
 		default:
 			$out .= $pre.'<input type="'.$type.'" name="'.$name.'" value="'.$value.'" '.$idStr.' />'.$post;
 			break;
-	}
-	
-	$out .= '<br />';
-	return $out;
+    }
+    $out .= '<br />';
+    return $out;
 }
-
 
 function get_fields() {
 
@@ -48,7 +39,6 @@ function get_fields() {
 	
 	return $fields;
 }
-
 
 function get_form($fields) {
 	$inputs = array();
@@ -99,7 +89,6 @@ function validate_form($post) {
 function saveFieldsInDB($post) {
 
 	// insert into db;
-	
 	//set time
 	//$time = time("H:i:s");
 	$time = date('Y-m-d');
@@ -116,35 +105,9 @@ function saveFieldsInDB($post) {
 	return false;
 }
 
-//submit
-if(isset($_POST) && !empty($_POST['isPost'])) {
-    
-    $validate = validate_form($_POST);
-    if ($validate === TRUE) {
-	$save = saveFieldsInDB($_POST);
-	if($save === TRUE) {
-            print "User saved!";
-            unset($_POST);
-            do_mysqli_close();
-	}
-    }
-    else{
-        print $validate;
-    } 
-}
-
-$fields = get_fields();
-$form = get_form($fields);
-
-print $form;
-
-//render form
 function render_form($form, $validate) {
     $outHTML = '<form action="" method="POST">'.implode('', $inputs).'</form>';
     return $outHTML;
 }
-
-$build = render_form($form, $validate);
-print $build;
 
 ?>
