@@ -1,6 +1,6 @@
 <?php 
 
-/* PHP SUCKS */
+/* PHP SUCKS, SUCKS */
 
 // Database access data
 define('__DB_USER', 'root');
