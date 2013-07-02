@@ -1,12 +1,5 @@
 <?php 
 
-/* PHP IS FOR LAMERS AND IT SUCKS */
-
-/**
- * this was not nice you know ...
- * PHP is simple and cooler then C++
-**/
-
 include 'helpers.php';
 
 //do_mysqli_connect();
