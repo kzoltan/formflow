@@ -1,5 +1,11 @@
 <?php 
 
+function db_connect () {
+    
+    $connect= do_mysqli_connect() or die ('I can not to connect to MySQL!');
+    return $connect;
+}
+
 function createInput($type, $name, $value = '', $label = '', $id = null, $pre = null, $post = null, $required = '', $validate = '') {
     global $gender;
     $idStr = $id?'id="'.$id.'"':'';
