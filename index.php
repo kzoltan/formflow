@@ -5,6 +5,7 @@ include 'form.php';
 include 'db.php';
 
 db_connect();
+//db_select();
 
 $fields = get_fields();
 $form = get_form($fields);
