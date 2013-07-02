@@ -3,8 +3,7 @@ error_reporting (E_ALL);
 include 'helpers.php';
 include 'form.php';
 
-//do_mysqli_connect();
-do_mysqli_connect() or die ('I can not to connect to MySQL!');
+db_connect();
 
 $fields = get_fields();
 $form = get_form($fields);
