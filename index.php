@@ -1,5 +1,7 @@
 <?php 
 
+/* PHP IS FOR LAMERS AND IT SUCKS */
+
 include 'helpers.php';
 
 //do_mysqli_connect();
