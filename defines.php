@@ -1,5 +1,7 @@
 <?php 
 
+/* PHP SUCKS */
+
 // Database access data
 define('__DB_USER', 'root');
 define('__DB_PASS', '123456');
