@@ -2,10 +2,16 @@
 error_reporting (E_ALL);
 include 'helpers.php';
 include 'form.php';
-include 'db.php';
 
-db_connect();
-//db_select();
+//include database class
+include 'database.class.php';
+
+
+//instantiate database
+$database = new Database();
+
+//objects
+
 
 $fields = get_fields();
 $form = get_form($fields);
