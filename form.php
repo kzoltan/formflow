@@ -92,7 +92,8 @@ function submit_form($_POST) {
 	if($save === TRUE) {
             print "User saved.";
             unset($_POST);
-            do_mysqli_close();
+            //do_mysqli_close();
+            db_disconnect ();
 	}
 	else{
             print "Fill all required fields!";
