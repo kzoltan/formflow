@@ -2,6 +2,7 @@
 error_reporting (E_ALL);
 include 'helpers.php';
 include 'form.php';
+include 'db.php';
 
 db_connect();
 
