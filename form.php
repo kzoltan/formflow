@@ -46,15 +46,7 @@ function get_form($fields) {
 			$inputs[] = createInput($field['type'], $field['name'], $field['value'], $field['label'], $fields['required'], $fields['validate']);
 		}
 	}
-	/*
-        $form = array(
-		'inputs' => $inputs,
-		'method' => 'POST',
-                'title' => 'User registration',
-	);
-        return $form;
-        */
-        
+	
 	$outHTML = '<form action="" method="POST">'.implode('', $inputs).'</form>';
 	return $outHTML;
 }
