@@ -21,11 +21,10 @@ $query1 = $database->fields('fieldname');
 echo "<pre>";
 print $query1;
 echo "</pre>";
- */
-
+*/
 //objects
 /*
-$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute($dbtable);
+$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
 echo "<pre>";
 print $query;
 echo "</pre>";
