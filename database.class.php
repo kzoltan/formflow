@@ -76,7 +76,7 @@ class Database {
         return $this->execute();
         
     }
-    
+    /*
     //result set - returns an array of the result set rows
     //fetchAll
     public function resultset () {
@@ -95,6 +95,8 @@ class Database {
         $this->execute();
         return $this->fetchRow(PDO::FETCH_ASSOC);
     } 
+    
+     */
 }
 
 ?>
