@@ -2,10 +2,10 @@
 
 class Database {
     
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $pass = DB_PASS;
-    private $dbname = DB_NAME;
+    private $host = __DB_HOST;
+    private $user = __DB_USER;
+    private $pass = __DB_PASS;
+    private $dbname = __DB_NAME;
     
     //database handler
     private $dbh;
@@ -14,7 +14,7 @@ class Database {
     private $error;
     
     //variable to hold the statement
-    private $stmt;
+    private $statement;
     
     //Construct
     public function __construct() {
@@ -45,7 +45,7 @@ class Database {
     //Query method
     //PDO::prepare function - The prepare function allows you to bind values into your SQL statements.
     public function query ($query) {
-        $this->stmt = $this->dbh->prepare($query);
+        $this->statement = $this->dbh->prepare($query);
         
     }
     
@@ -66,12 +66,12 @@ class Database {
                     $type = PDO::PARAM_STR;
             }
         }
-        $this->stmt->bindValue($param, $value, $type);
+        $this->statement->bindValue($param, $value, $type);
     }
     
     //execute - execute the prepared statement
     public function execute() {
-        return $this->stmt->execute();
+        return $this->statement->execute();
         
     }
     
@@ -79,18 +79,18 @@ class Database {
     //fetchAll
     public function resultset () {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
         
     }
     //fetchAllAsoc
     public function resultset_asoc() {
         $this->execute();
-        return $this->stmt->fetchAllAsoc();
+        return $this->statement->fetchAllAsoc();
     }
     //fetchRow
     public function resultset_row() {
         $this->execute();
-        return $this->stmt->fetchRow();
+        return $this->statement->fetchRow();
     }
     
     //transaction - Transactions allows you to run multiple changes to a database all in one batch to ensure that 
@@ -113,10 +113,9 @@ class Database {
     
     //debug dump parameters - dump the information that was contained in the prepared statement
     public function debugDumpParams(){
-        return $this->stmt->debugDumpParams();
+        return $this->statement->debugDumpParams();
     }
     
 }
 
-
-
+?>
