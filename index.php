@@ -1,16 +1,29 @@
 <?php  
+
 error_reporting (E_ALL);
 include 'helpers.php';
+include 'defines.php';
 include 'form.php';
 
 //include database class
 include 'database.class.php';
 
 
-//instantiate database
+//instantiate new database
 $database = new Database();
 
 //objects
+$database->__construct();
+
+$query = $database->query();
+echo "<pre>";
+print $query;
+echo "</pre>";
+
+$result = $database->resultset();
+echo "<pre>";
+print $result;
+echo "</pre>";
 
 
 $fields = get_fields();
