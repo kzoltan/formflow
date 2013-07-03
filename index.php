@@ -9,25 +9,15 @@ include 'form.php';
 include 'database.class.php';
 
 //instantiate new database
-
 $database = new Database();
 
 //objects
 /*
-$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
+$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute($dbtable);
 echo "<pre>";
 print $query;
 echo "</pre>";
 */
-
-
-/*
-$result = $database->resultset();
-echo "<pre>";
-print $result;
-echo "</pre>";
-*/
-
 $fields = get_fields();
 $form = get_form($fields);
 
