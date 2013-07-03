@@ -6,6 +6,7 @@ class Database {
     private $user = __DB_USER;
     private $pass = __DB_PASS;
     private $dbname = __DB_NAME;
+    //private $dbtable = __DB_TABLE;
     
     //database handler &database errors
     private $dbh;
@@ -48,6 +49,7 @@ class Database {
     //Destructor
     public function __destruct() {
         return false;
+        //return $this->dbh = do_mysqli_close();
         //print "Destroying".$this->name."\n";
     }
     
@@ -68,14 +70,14 @@ class Database {
         return $this->condition = $conditioname;
         //return $this->condition;
     }
-    /*
+    
     //execute - execute the prepared statement
-    public function execute($query) {
+    public function execute() {
         //echo 'OK';
-        return $this->execute($query);
+        return $this->execute();
         
     }
-    */
+    
     /*
     //Query method
     //PDO::prepare function - The prepare function allows you to bind values into your SQL statements.
