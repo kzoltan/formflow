@@ -11,6 +11,18 @@ include 'database.class.php';
 //instantiate new database
 $database = new Database();
 
+$query = $database->db_select('tablename');
+echo "<pre>";
+print $query;
+echo "</pre>";
+
+/*
+$query1 = $database->fields('fieldname');
+echo "<pre>";
+print $query1;
+echo "</pre>";
+ */
+
 //objects
 /*
 $query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute($dbtable);
@@ -18,6 +30,7 @@ echo "<pre>";
 print $query;
 echo "</pre>";
 */
+
 $fields = get_fields();
 $form = get_form($fields);
 
