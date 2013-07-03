@@ -6,7 +6,6 @@ class Database {
     private $user = __DB_USER;
     private $pass = __DB_PASS;
     private $dbname = __DB_NAME;
-    //private $dbtable = __DB_TABLE;
     
     //database handler &database errors
     private $dbh;
@@ -78,14 +77,6 @@ class Database {
         
     }
     
-    /*
-    //Query method
-    //PDO::prepare function - The prepare function allows you to bind values into your SQL statements.
-    public function query ($query) {
-        return $this->dbh->prepare($query);
-        
-    }
-    
     //result set - returns an array of the result set rows
     //fetchAll
     public function resultset () {
@@ -96,14 +87,14 @@ class Database {
     //fetchAllAsoc
     public function resultset_asoc() {
         $this->execute();
-        return $this->fetchAllAsoc();
+        return $this->fetchAllAsoc(PDO::FETCH_ASSOC);
     }
+    
     //fetchRow
     public function resultset_row() {
         $this->execute();
-        return $this->fetchRow();
-    }
-    */
+        return $this->fetchRow(PDO::FETCH_ASSOC);
+    } 
 }
 
 ?>
