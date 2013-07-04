@@ -76,27 +76,25 @@ class Database {
         return $this->execute();
         
     }
-    /*
-    //result set - returns an array of the result set rows
-    //fetchAll
+    
     public function resultset () {
-        $this->execute();
-        return $this->fetchAll(PDO::FETCH_ASSOC);
+        //$this->execute();
+        return $this->execute()->fetchAll(PDO::FETCH_ASSOC);
         
     }
-    //fetchAllAsoc
+    
     public function resultset_asoc() {
-        $this->execute();
-        return $this->fetchAllAsoc(PDO::FETCH_ASSOC);
+        //$this->execute();
+        return $this->execute()->fetchAllAsoc(PDO::FETCH_ASSOC);
     }
     
     //fetchRow
     public function resultset_row() {
-        $this->execute();
-        return $this->fetchRow(PDO::FETCH_ASSOC);
+        //$this->execute();
+        return $this->execute()->fetchRow(PDO::FETCH_ASSOC);
     } 
     
-     */
+     
 }
 
 ?>
