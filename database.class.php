@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 class Database {
     
     private $host = __DB_HOST;
@@ -19,7 +21,7 @@ class Database {
     //Construct
     public function __construct() {
         
-        $this->name = "MyDatabaseClass";
+        //$this->name = "MyDatabaseClass";
         
         //set DNS
         $dns = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
@@ -53,48 +55,91 @@ class Database {
     }
     
     //function db_select
+    /*
     public function db_select ($tablename) {
         return $this->table = $tablename;
         //return $this->table;
     }
+     */
     
+    //drupal db_select
+    public function db_select($table, $alias = NULL, array $options = array()) {
+        if (empty($options['target'])) {
+            $options['target'] = 'default';
+        }
+        return Database::getConnection($options['target'])->select($table, $alias, $options);
+    }
     //function fields
     public function fields($fieldname) {
+        //logic 
         return $this->fields = $fieldname;
         //return $this->fields;
     }
-    
     //function condition
     public function condition ($conditioname) {
         return $this->condition = $conditioname;
-        //return $this->condition;
     }
-    
-    //execute - execute the prepared statement
-    public function execute() {
-        //echo 'OK';
+    //function execute()
+    public function execute () {
+        //logic
         return $this->execute();
-        
     }
     
+    /*
     public function resultset () {
         //$this->execute();
         return $this->execute()->fetchAll(PDO::FETCH_ASSOC);
         
     }
+     */
     
-    public function resultset_asoc() {
-        //$this->execute();
-        return $this->execute()->fetchAllAsoc(PDO::FETCH_ASSOC);
+    public function fetchAllAssoc($key, $fetch_style = NULL) {
+        
+        $this->fetchStyle = isset($fetch_style) ? $fetch_style : $this->defaultFetchStyle;
+        $this->fetchOptions = $this->defaultFetchOptions;
+
+        $result = array();
+        // Traverse the array as PHP would have done.
+        while (isset($this->currentRow)) {
+            // Grab the row in its raw PDO::FETCH_ASSOC format.
+            $row = $this->currentRow;
+            // Grab the row in the format specified above.
+            $result_row = $this->current();
+            $result[$this->currentRow[$key]] = $result_row;
+            $this->next();
+        }
+
+        // Reset the fetch parameters to the value stored using setFetchMode().
+        $this->fetchStyle = $this->defaultFetchStyle;
+        $this->fetchOptions = $this->defaultFetchOptions;
+        
+        return $result;
     }
     
-    //fetchRow
-    public function resultset_row() {
-        //$this->execute();
-        return $this->execute()->fetchRow(PDO::FETCH_ASSOC);
-    } 
     
-     
+    public function fetchAll($fetch_style = NULL, $fetch_column = NULL, $constructor_args = NULL) {
+        $this->fetchStyle = isset($fetch_style) ? $fetch_style : $this->defaultFetchStyle;
+        $this->fetchOptions = $this->defaultFetchOptions;
+        if (isset($fetch_column)) {
+            $this->fetchOptions['column'] = $fetch_column;
+        }
+        if (isset($constructor_args)) {
+            $this->fetchOptions['constructor_args'] = $constructor_args;
+        }
+
+        $result = array();
+        // Traverse the array as PHP would have done.
+        while (isset($this->currentRow)) {
+            // Grab the row in the format specified above.
+            $result[] = $this->current();
+            $this->next();
+        }
+
+        // Reset the fetch parameters to the value stored using setFetchMode().
+        $this->fetchStyle = $this->defaultFetchStyle;
+        $this->fetchOptions = $this->defaultFetchOptions;
+        return $result;
+      }
 }
 
 ?>
