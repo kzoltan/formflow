@@ -11,23 +11,33 @@ include 'database.class.php';
 //instantiate new database
 $database = new Database();
 
-$query = $database->db_select('tablename');
+//objects
+//$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
+//echo "<pre>";
+//print $query;
+//echo "</pre>";
+
+//select all
+echo 'ok';
+$database = db_select('users', 'u')
+        ->fields('n')
+        ->execute()
+        ->fetchAllAssoc();
 echo "<pre>";
-print $query;
+print $database;
 echo "</pre>";
 
 /*
-$query1 = $database->fields('fieldname');
-echo "<pre>";
-print $query1;
-echo "</pre>";
+$query = db_select('table', 't');
+$result = $query 
+    ->fields()
+    ->fields()
+    ->execute();
+
+foreach ($result as $row) {
+    //do something with $row
+}
 */
-//objects
-
-//$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
-print $query;
-
-
 
 $fields = get_fields();
 $form = get_form($fields);
