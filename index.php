@@ -23,12 +23,11 @@ print $query1;
 echo "</pre>";
 */
 //objects
-/*
-$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
-echo "<pre>";
+
+//$query = $database->db_select('tablename')->fields('fieldname')->condition('conditioname')->execute();
 print $query;
-echo "</pre>";
-*/
+
+
 
 $fields = get_fields();
 $form = get_form($fields);
